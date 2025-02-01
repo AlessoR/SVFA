@@ -1,1 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ojitos lindos, ¿Quieres ser mi San Valentín? ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap');
 
+        body {
+            background: linear-gradient(to bottom, #ff99cc, #ff66b2);
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            padding: 50px;
+            overflow: hidden;
+            color: white;
+            position: relative;
+            animation: bgAnimation 10s infinite alternate;
+        }
+
+        @keyframes bgAnimation {
+            0% { background: linear-gradient(to bottom, #ff99cc, #ff66b2); }
+            100% { background: linear-gradient(to bottom, #ff66b2, #ff3385); }
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            margin: auto;
+            position: relative;
+            z-index: 2;
+            color: #ff4d6d;
+            animation: pop 1s ease-in-out;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        h1 {
+            font-size: 30px;
+            font-family: 'Pacifico', cursive;
+        }
+
+        p {
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        .buttons {
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            margin: 10px;
+            font-size: 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: 'Pacifico', cursive;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .yes {
+            background-color: #ff4d6d;
+            color: white;
+            animation: glow 1.5s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0px 0px 10px rgba(255, 77, 109, 0.5); }
+            100% { box-shadow: 0px 0px 20px rgba(255, 77, 109, 0.8); }
+        }
+
+        .yes:hover {
+            background-color: #ff1a4c;
+        }
+
+        .no {
+            background-color: #ccc;
+            color: black;
+            transition: transform 0.3s, font-size 0.3s;
+        }
+
+        /* Animación de corazones flotantes */
+        @keyframes floating {
+            0% { transform: translateY(0px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .heart, .flower {
+            position: absolute;
+            animation: floating 5s linear infinite;
+        }
+
+        .heart {
+            color: #ff4d6d;
+            font-size: 30px;
+        }
+
+        .flower {
+            color: #ffcc00;
+            font-size: 30px;
+            animation-duration: 6s;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Corazones y flores flotantes -->
+    <script>
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.innerHTML = "❤️";
+            heart.classList.add("heart");
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+            heart.style.fontSize = Math.random() * 20 + 20 + "px";
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        function createFlower() {
+            const flower = document.createElement("div");
+            flower.innerHTML = "🌸";
+            flower.classList.add("flower");
+            flower.style.left = Math.random() * 100 + "vw";
+            flower.style.animationDuration = Math.random() * 3 + 2 + "s";
+            flower.style.fontSize = Math.random() * 20 + 20 + "px";
+            document.body.appendChild(flower);
+
+            setTimeout(() => {
+                flower.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 500);
+        setInterval(createFlower, 800);
+    </script>
+
+    <div class="container">
+        <h1>Ojitos lindos, ¿quieres ser mi San Valentín? ❤️</h1>
+        <p>Ándale, sí, aunque estemos lejos, mi niña ❤️</p>
+        <div class="buttons">
+            <button class="btn yes" id="yesButton" onclick="aceptar()">¡Sí, obvio! ❤️</button>
+            <button class="btn no" id="noButton" onclick="dudar()">No 😢</button>
+        </div>
+    </div>
+
+    <script>
+        function aceptar() {
+            alert("Aunque no estemos cerca, quiero que sepas que te amo ❤️.");
+        }
+
+        // Función cuando intenta presionar "No"
+        let intentos = 0;
+        function dudar() {
+            intentos++;
+            if (intentos === 1) {
+                document.getElementById("noButton").innerText = "¿Segura? 🥺";
+            } else if (intentos === 2) {
+                document.getElementById("noButton").innerText = "Piensa bien 💔";
+            } else if (intentos === 3) {
+                document.getElementById("noButton").innerText = "No me hagas esto 😭";
+            } else if (intentos >= 4) {
+                document.getElementById("noButton").style.display = "none";
+            }
+
+            // Hacer más grande el botón de "Sí" y más pequeño el de "No"
+            let yesButton = document.getElementById("yesButton");
+            let noButton = document.getElementById("noButton");
+
+            let currentYesSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
+            let currentNoSize = parseFloat(window.getComputedStyle(noButton).fontSize);
+
+            yesButton.style.fontSize = (currentYesSize + 5) + "px";
+            noButton.style.fontSize = (currentNoSize - 3) + "px";
+        }
+    </script>
+
+</body>
+</html>
